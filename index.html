@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>BlaBlaCar | Modern Travel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="logo" onclick="location.reload()">Yulda</div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button id="publishRideBtn" class="btn secondary" style="width: auto; padding: 8px 16px;">
+        <i data-lucide="plus-circle" style="width:18px"></i> Publish
+      </button>
+      <button id="profileBtn" style="background:none; border:none; cursor:pointer; padding:0;">
+        <img id="profileAvatar" src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+          style="width:40px; height:40px; border-radius:50%; border:2px solid var(--primary); object-fit: cover;">
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="search-panel">
+      <h2 style="margin-top:0">Where are you going?</h2>
+      <input id="from" placeholder="Leaving from...">
+      <input id="to" placeholder="Going to...">
+      <input id="date" type="date">
+      <button id="searchBtn" class="btn primary">Search</button>
+    </section>
+
+    <div id="loading" style="text-align:center" hidden>Searching for rides...</div>
+    <div id="results"></div>
+  </main>
+
+  <div id="successOverlay" class="modal-overlay" hidden>
+    <div class="modal-card" style="text-align:center; padding:40px;">
+      <div class="success-icon">✓</div>
+      <h2 style="color:var(--text-main)">Ride Published!</h2>
+      <p>Your journey has been shared with the community.</p>
+      <button onclick="location.reload()" class="btn primary">Great!</button>
+    </div>
+  </div>
+
+  <div id="createRideModal" class="modal-overlay" hidden>
+    <div class="modal-card">
+      <button id="closeCreateModal" class="modal-close">&times;</button>
+      <h2 style="margin-top:0">Offer a Ride</h2>
+      <form id="createRideForm">
+        <select id="rideVehicle" required></select>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <input id="rideFrom" placeholder="From" required>
+          <input id="rideTo" placeholder="To" required>
+        </div>
+        <input id="rideTime" type="datetime-local" required>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <input id="rideSeats" type="number" placeholder="Seats" required>
+          <input id="ridePrice" type="number" placeholder="Price (UZS)" required>
+        </div>
+        <button type="submit" id="submitRideBtn" class="btn primary" style="margin-top:10px;">Post My Ride</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="rideDetailModal" class="modal-overlay" hidden>
+    <div class="modal-card">
+      <button id="closeDetailModal" class="modal-close">&times;</button>
+      <div id="rideDetailContent"></div>
+    </div>
+  </div>
+
+  <div id="authModal" class="modal-overlay" hidden>
+    <div class="modal-card">
+      <button id="closeAuthModal" class="modal-close">&times;</button>
+      <h2 id="authTitle" style="margin:0">Welcome back</h2>
+      <form id="authForm" style="margin-top:15px;">
+        <div id="signupFields" hidden>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <input id="regFirst" placeholder="First Name">
+            <input id="regLast" placeholder="Last Name">
+          </div>
+        </div>
+        <input id="authPhone" placeholder="Phone (+998...)">
+        <input id="authPassword" type="password" placeholder="Password">
+        <div id="authError" class="form-error" hidden></div>
+        <button type="submit" id="authSubmit" class="btn primary">Login</button>
+      </form>
+      <p style="text-align:center; margin-top:15px;"><a href="#" id="switchAuth"
+          style="color:var(--primary); font-weight:bold;">Join as a Driver</a></p>
+    </div>
+  </div>
+
+  <script src="assets/auth.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+
+</html>
